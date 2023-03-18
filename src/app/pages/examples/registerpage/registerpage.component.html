@@ -68,64 +68,249 @@
             <div class="square square-8" id="square8"></div>
             <form [formGroup]="askForm">
               <div class="card card-register">
-                <h1 class="display-4 d-flex align-items-center justify-content-center pt-3">choose your preferences</h1>
+                <h1 class="display-4 d-flex align-items-center justify-content-center pt-3">Build Your Trip Experience
+                </h1>
                 <div class=" card-body">
-                  <div>
-                    <div>
-                      <tabset class="nav-tabs-primary">
-                        <tab>
-                          <ng-template tabHeading>
-                            1
-                          </ng-template>
-                          <div class="row p-3">
-                            <div class="form-check form-check-radio">
-                              <label class="form-check-label">
-                                <input class="form-check-input" formControlName="city" type="radio" name="city"
-                                  id="city" value="Riyadh">
-                                Riyadh
-                                <span class="form-check-sign"></span>
-                              </label>
-                            </div>
-                            <div class="form-check form-check-radio">
-                              <label class="form-check-label">
-                                <input class="form-check-input" type="radio" formControlName="city" name="city"
-                                  id="city" value="Jeddah">
-                                Jeddah
-                                <span class="form-check-sign"></span>
-                              </label>
-                            </div>
-                            <div class="form-check form-check-radio">
-                              <label class="form-check-label">
-                                <input class="form-check-input" type="radio" formControlName="city" name="city"
-                                  id="city" value="Makkah">
-                                Makkah
-                                <span class="form-check-sign"></span>
-                              </label>
-                            </div>
-                          </div>
-                        </tab>
-                        <tab>
-                          <ng-template tabHeading>
-                            2
-                          </ng-template>
-                          <div class="row">
-                            <div class="col">
-                              <input type="text" placeholder="From" formControlName="from" class="form-control"
-                                bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }">
-                            </div>
-                            <div class="col">
-                              <input type="text" placeholder="To" formControlName="to" class="form-control" bsDatepicker
-                                [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }">
-                            </div>
-                          </div>
-                        </tab>
-                      </tabset>
+                  <div class="form-group">
+                    <p class="h4">Have you decided when you want to travel?</p>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" formControlName="timeDecided" name="timeDecided"
+                          id="timeDecided" value="yes"> Yes
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" formControlName="timeDecided" name="timeDecided"
+                          id="timeDecided" value="no"> No
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2" *ngIf="askForm.value.timeDecided === 'yes'">
+                    <p class="h4">When?</p>
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" placeholder="Arrival date" formControlName="Arrival" class="form-control"
+                          bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }">
+                      </div>
+                      <div class="col">
+                        <input type="text" placeholder="Departure date" formControlName="Departure" class="form-control"
+                          bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2" *ngIf="askForm.value.timeDecided === 'no'">
+                    <p class="h4">How Long you will stay?</p>
+                    <label for="inputState">How many Days</label>
+                    <select formControlName="days" id="inputState" class="form-control">
+                      <option value="1" selected>1 Day</option>
+                      <option value="2">2 Days</option>
+                      <option value="3">3 Days</option>
+                      <option value="4">4 Days</option>
+                      <option value="5">5 Days</option>
+                      <option value="6">6 Days</option>
+                    </select>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2">
+                    <p class="h4">What climate do you prefer?</p>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-check form-check-radio form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" formControlName="climate" name="climate"
+                              id="climate" value="Summer"> Summer
+                            <span class="form-check-sign"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check form-check-radio form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" formControlName="climate" name="climate"
+                              id="climate" value="Winter"> Winter
+                            <span class="form-check-sign"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-check form-check-radio form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" formControlName="climate" name="climate"
+                              id="climate" value="Fall"> Fall
+                            <span class="form-check-sign"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check form-check-radio form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" formControlName="climate" name="climate"
+                              id="climate" value="Spring"> Spring
+                            <span class="form-check-sign"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2">
+                    <p class="h4">What are your interests?</p>
+                    <div class="row">
+                      <div class="cal">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="Culture">
+                            Culture
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="cal">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="Relaxing">
+                            Relaxing
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="cal">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="Historic sites">
+                            Historic sites
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="cal">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="">
+                            Beaches
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="cal">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="">
+                            Outdoors
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="cal">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="">
+                            Shopping
+                            <span class="form-check-sign">
+                              <span class="check"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2">
+                    <p class="h4">Do you have favorite cities you would like to visit?</p>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" formControlName="favoriteCities"
+                          name="favoriteCities" id="favoriteCities" value="yes"> Yes
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" formControlName="favoriteCities"
+                          name="favoriteCities" id="favoriteCities" value="no"> No
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2" *ngIf="askForm.value.favoriteCities === 'yes'">
+                    <p class="h4">What city would like to visit?</p>
+                    <label for="inputState">Choose city</label>
+                    <select formControlName="city" id="inputState" class="form-control">
+                      <option selected>Riyadh</option>
+                      <option>Maddinah</option>
+                      <option>Jeddah</option>
+                      <option>Makkah</option>
+                      <option>Dammam</option>
+                      <option>AlUla</option>
+                    </select>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2">
+                    <p class="h4">What transportation would you like to use?</p>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" formControlName="transportation"
+                          name="transportation" id="transportation" value="Rent a car"> Rent a car
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" formControlName="transportation" type="radio"
+                          name="transportation" id="transportation" value="Transportation Apps"> Transportation Apps
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2">
+                    <p class="h4">Do you have a specific travel budget?</p>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" formControlName="havingBudget" name="havingBudget"
+                          id="havingBudget" value="yes"> Yes
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" formControlName="havingBudget" type="radio" name="havingBudget"
+                          id="havingBudget" value="no"> No
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- =================================== -->
+                  <div class="form-group pt-2" *ngIf="askForm.value.havingBudget === 'yes'">
+                    <p class="h4">How much is your travel budget?</p>
+                    <div class="col">
+                      <input type="text" class="form-control" id="budget" formControlName="budget"
+                        placeholder="travel budget">
                     </div>
                   </div>
                 </div>
                 <div class="card-footer">
-                  <button type="button" *ngIf="askForm.valid" class="btn btn-warning"
-                    (click)="onSubmit()">Submit</button>
+                  <button type="button" class="btn btn-warning" (click)="onSubmit()">Submit</button>
                 </div>
               </div>
             </form>

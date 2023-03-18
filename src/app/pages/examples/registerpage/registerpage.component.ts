@@ -80,9 +80,17 @@ export class RegisterpageComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.askForm = this.fb.group({
-      city: ["", Validators.required],
-      from: ["", Validators.required],
-      to: ["", Validators.required],
+      timeDecided: [""],
+      Arrival: [""],
+      Departure: [""],
+      days: [""],
+      climate: [""],
+      interests: [""],
+      city: [""],
+      favoriteCities: [""],
+      transportation: [""],
+      havingBudget: [""],
+      budget: [""],
     });
   }
 
@@ -105,8 +113,8 @@ export class RegisterpageComponent implements OnInit, OnDestroy {
 
   //count how many days between from and to date
   countDays() {
-    var from = this.getDate(this.askForm.value.from);
-    var to = this.getDate(this.askForm.value.to);
+    var from = this.getDate(this.askForm.value.Arrival);
+    var to = this.getDate(this.askForm.value.Departure);
     var date1 = new Date(from);
     var date2 = new Date(to);
     var Difference_In_Time = date2.getTime() - date1.getTime();
@@ -114,21 +122,52 @@ export class RegisterpageComponent implements OnInit, OnDestroy {
     return Difference_In_Days + 1;
   }
 
+  getChatQuation() {
+    // I want a trip plan, with prices for each activity, for [5] days on the winter, I'm interested in shopping and historical sites, I want to visit [Riyadh] city, for transportation I will use Uber, with budget of 5000 Saudi Riyals. Give me a plan in bullet points as HTML code with a title of the trip 
 
+    var question = "I want a trip plan, with prices for each activity, for" + this.askForm.value.days + "days on the winter, I'm interested in shopping and historical sites, I want to visit " + this.askForm.value.city + " city, for transportation I will use Uber, with budget of 5000 Saudi Riyals. Give me a plan in bullet points as HTML code with a title of the trip";
+    // if (this.askForm.value.Arrival && this.askForm.value.Departure) {
+    //   question += this.countDays() + " days";
+    // }
+    // if (this.askForm.value.climate) {
+    //   question += " on the " + this.askForm.value.climate;
+    // }
+    // if (this.askForm.value.city) {
+    //   question += ", I want to visit " + this.askForm.value.city + " city";
+    // }
+    // } else {
+    //   question += ", I want to visit Riyadh city";
+    // }
+    // if (this.askForm.value.transportation) {
+    //   question += ", for transportation I will use " + this.askForm.value.transportation;
+    // }
+    // if (this.askForm.value.budget) {
+    //   question += ", with budget of " + this.askForm.value.budget + " Saudi Riyals";
+    // }
+
+    // question += ", Give me the plan including the price for each activity in bullet points as HTML code";
+
+    return question;
+  }
   onSubmit() {
-    var question = "I need plan for " + this.countDays() + " days in " + this.askForm.value.city + " as html format";
-    console.log(question);
+
+
+    console.log(this.askForm.value);
+    console.log(this.getChatQuation())
+
+
+
 
     var response = this.http.post("https://api.openai.com/v1/completions",
       {
         model: "text-davinci-003",
-        prompt: question,
+        prompt: this.getChatQuation(),
         max_tokens: 4000,
         temperature: 0.9
       }, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': 'Bearer **************'
       }
     })
       .subscribe(
